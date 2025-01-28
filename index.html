@@ -1,1 +1,146 @@
-你好，我是苏子铭。
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新年快乐！</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(45deg, #a80000, #d40000);
+            overflow: hidden;
+            position: relative;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .greeting {
+            text-align: center;
+            color: #ffd700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 4em;
+            margin: 0;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            margin-top: 20px;
+        }
+
+        /* 灯笼装饰 */
+        .lantern {
+            position: absolute;
+            width: 60px;
+            height: 80px;
+            background: #ff0000;
+            border-radius: 30px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .lantern::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 25px;
+            width: 10px;
+            height: 20px;
+            background: #ffd700;
+        }
+
+        /* 烟花效果 */
+        .firework {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: #fff;
+            border-radius: 50%;
+            animation: explode 1.5s ease-out forwards;
+        }
+
+        /* 动画定义 */
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
+            50% { text-shadow: 0 0 40px rgba(255, 215, 0, 1); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes explode {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(20); opacity: 0; }
+        }
+
+        /* 雪花效果 */
+        .snow {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(100vh); }
+        }
+    </style>
+</head>
+<body>
+    <!-- 灯笼装饰 -->
+    <div class="lantern" style="left: 10%; top: 15%"></div>
+    <div class="lantern" style="right: 10%; top: 25%"></div>
+
+    <div class="container">
+        <div class="greeting">
+            <h1>🎉 新年快乐！🎉</h1>
+            <h2>万事如意 · 心想事成</h2>
+            <h2>🎆 2024 🎆</h2>
+        </div>
+    </div>
+
+    <script>
+        // 创建烟花特效
+        function createFirework() {
+            const firework = document.createElement('div');
+            firework.className = 'firework';
+            firework.style.left = Math.random() * 100 + '%';
+            firework.style.top = Math.random() * 100 + '%';
+            document.body.appendChild(firework);
+            
+            setTimeout(() => firework.remove(), 1500);
+        }
+
+        // 创建雪花
+        function createSnow() {
+            const snow = document.createElement('div');
+            snow.className = 'snow';
+            snow.style.left = Math.random() * 100 + '%';
+            snow.style.animationDuration = Math.random() * 3 + 2 + 's';
+            snow.style.opacity = Math.random();
+            document.body.appendChild(snow);
+            
+            setTimeout(() => snow.remove(), 5000);
+        }
+
+        // 定时生成特效
+        setInterval(createFirework, 800);
+        setInterval(createSnow, 100);
+    </script>
+</body>
+</html>
